@@ -1,30 +1,30 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!--tells browser we're using HTML5-->
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head> <!-- Info about the page -->
+        <meta charset="UTF-8"> <!-- Set up character encoding to display them correctly -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures proper display on different devices -->
 
         <title>Job Application Tracker</title>
     </head>
 
-    <body>
-        <h1>Job Application Tracker</h1>
+    <body> <!-- Contains all visible content -->
+        <h1>Job Application Tracker</h1> <!-- Main heading -->
 
-        <p>Track my job applications</p>
+        <p>Track my job applications</p> <!-- Paragraph -->
 
-        <h2>Add Application</h2>
+        <h2>Add Application</h2> <!-- Second level heading for sections -->
 
-        <form>
+        <form> <!-- Content/fields for the form that will be filled out for each application -->
 
-            <label for="company">Company</label>
-            <input type="text" id="company">
+            <label for="company">Company</label> <!-- "label" = input description -->
+            <input type="text" id="company"> <!-- "input" creates a field for data entry  -->
 
             <label for="position">Position</label>
             <input type="text" id="position">
 
             <label for="work-type">Work Type</label>
-            <select id="work-type">
-                <option value="remote">Remote</option>
+            <select id="work-type"> <!-- "select" = dropdown box -->
+                <option value="remote">Remote</option> <!-- "option" = a choice for dropdown -->
                 <option value="hybrid">Hybrid</option>
                 <option value="onsite">On-site</option>
             </select>
@@ -46,9 +46,25 @@
             </select>
 
             <label for="date-applied">Date Applied</label>
-            <input type="date" id="date-applied">
+            <input type="date" id="date-applied"> <!-- " input type of date allows for built-in date picker box"-->
+
+            <label for="job-url">Job Posting URL</label>
+            <input type="url" id="job-url"> <!-- url input type is used for URLs-->
+
+            <label for="notes">Notes</label>
+            <textarea id="notes"></textarea> <!-- textarea provides larger text box for multiple lines -->
+            
+            <button type="submit">Add Application</button> <!-- creates a clickable button-->
 
         </form>
+
+        <h2>Applications</h2> <!-- heading for section where saved applications are viewed-->
+
+        <div id="applications-list"></div> 
+        <!-- "div" is a general purpose container
+              In this case, this one is empty. We will use
+              JavaScript to find the "applications-list" to
+              insert saved jobs in it-->
 
     </body>
 </html>
