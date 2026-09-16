@@ -1,0 +1,24 @@
+body {
+    font-family: Arial, sans-serif;
+} /* applies styles 
+    (in this case font, Arial if available, 
+    otherwise another sans-serif) to the body element */
+
+form {
+    display: flex; /*flexible layout container */
+    flex-direction: column; /*stacks items vertically */
+    gap: 10px; /* adds 10 pixels of space between each item */
+    max-width: 500px; /* prevents wide stretching*/
+} /* form is CSS selector and targets <form> in html file*/
+
+input, /* targets all <input> fields */
+select, /* targets all dropdown menus */
+textarea, /*targets textarea fields*/
+button { /* targets buttons, in this case the Add Application button */
+    padding: 8px;
+    font-size: 16px;
+} /* commas between each elements means that padding and font-size is applied to all*/
+
+label {
+    font-weight: bold;
+} /* applies bold text to all <label> elements */
