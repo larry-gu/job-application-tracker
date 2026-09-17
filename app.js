@@ -11,6 +11,23 @@ const statusSelect = document.getElementById("status");
 const jobUrlInput = document.getElementById("job-url");
 const notesTextArea = document.getElementById("notes");
 const applicationForm = document.getElementById("application-form");
+const applicationsList = document.getElementById("applications-list");
+
+const applications = []; // empty array that will hold applications
+
+// renderApplicaiton displays applications from applications[]
+function renderApplications() {
+    applicationsList.innerHTML = ""; // clear container before looping
+
+    // loop
+    applications.forEach(function(application){
+        
+        const applicationElement = document.createElement("div");// creates new div 
+        applicationElement.textContent = `${application.company} - ${application.position}`; // sets visible text for div
+        applicationsList.append(applicationElement); // add newest application to top of list
+        console.log(application.company);
+    });
+}
 
 applicationForm.addEventListener("submit", function(event) {
     event.preventDefault(); // event=form submission, preventDefault() prevents page from refreshing 
@@ -42,8 +59,21 @@ applicationForm.addEventListener("submit", function(event) {
 
     }; // Object that represents a single job application
 
-    console.log(application);
+    applications.unshift(application); // adds newest application to the start of array
+    
+    renderApplications(); // calling function
+
+    console.log(applications);
+
+    
+
+    
+    
+    
 }); 
 // EventListerner waits for a specific action ("submit" the form in this case)
 // and runs the code following function()
+
+
+
 
