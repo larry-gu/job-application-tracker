@@ -13,7 +13,14 @@ const notesTextArea = document.getElementById("notes");
 const applicationForm = document.getElementById("application-form");
 const applicationsList = document.getElementById("applications-list");
 
-const applications = []; // empty array that will hold applications
+// Retrieve previous saved applications from localSorage
+// getItem() will return null if nothing is saved
+const savedApplications = localStorage.getItem("applications");
+
+// If saved data exists, convert JSON text back into JavaScript array
+// else start with empty array
+const applications = savedApplications ? JSON.parse(savedApplications) : [];
+
 
 // renderApplicaiton displays applications from applications[]
 function renderApplications() {
@@ -49,6 +56,8 @@ applicationForm.addEventListener("submit", function(event) {
 
     applications.unshift(application); // adds newest application to the start of array
     
+    localStorage.setItem("applications", JSON.stringify(applications)); // convert array to JSON text and save in localStorage
+
     renderApplications(); // calling function
 
     //console.log(applications);
@@ -61,6 +70,24 @@ applicationForm.addEventListener("submit", function(event) {
 }); 
 // EventListerner waits for a specific action ("submit" the form in this case)
 // and runs the code following function()
+
+
+/*const testApplication ={
+    company: "Netflix",
+    position: "Cloud Engineer"
+};
+
+localStorage.setItem("testApplication", JSON.stringify(testApplication));
+
+const savedApplication = localStorage.getItem("testApplication");
+
+console.log(savedApplication);
+
+const parsedApplication = JSON.parse(savedApplication);
+
+console.log(parsedApplication.company);*/
+
+
 
 
 
