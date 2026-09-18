@@ -25,25 +25,13 @@ function renderApplications() {
         const applicationElement = document.createElement("div");// creates new div 
         applicationElement.textContent = `${application.company} - ${application.position}`; // sets visible text for div
         applicationsList.append(applicationElement); // add newest application to top of list
-        console.log(application.company);
+        //console.log(application.company);
     });
 }
 
 applicationForm.addEventListener("submit", function(event) {
     event.preventDefault(); // event=form submission, preventDefault() prevents page from refreshing 
-    
-    /*
-    console.log("Form submitted");
-    console.log(companyInput.value); // retrieves user input for company
-    console.log(positionInput.value); // retrieves user input for position
-    console.log(workTypeSelect.value);
-    console.log(locationInput.value);
-    console.log(payInput.value);
-    console.log(statusSelect.value);
-    console.log(dateAppliedInput.value);
-    console.log(jobUrlInput.value);
-    console.log(notesTextArea.value); 
-    */
+
 
     const application = {
         // Properties -> Property: Value
@@ -63,7 +51,7 @@ applicationForm.addEventListener("submit", function(event) {
     
     renderApplications(); // calling function
 
-    console.log(applications);
+    //console.log(applications);
 
     
 
