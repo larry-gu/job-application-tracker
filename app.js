@@ -29,7 +29,7 @@ function renderApplications() {
 
         const formattedWorkType = application.workType.charAt(0).toUpperCase() + application.workType.slice(1);
         const formattedStatus = application.status.charAt(0).toUpperCase()+application.status.slice(1);
-        console.log(formattedStatus);
+        
         const applicationElement = document.createElement("div");// creates new div 
         
         const applicationTitle = document.createElement("h3");
@@ -41,8 +41,23 @@ function renderApplications() {
         applicationElement.append(applicationDetails);
 
         const applicationDate = document.createElement("p");
-        applicationDate.textContent = `${application.dateApplied}`;
+        applicationDate.textContent = application.dateApplied;
         applicationElement.append(applicationDate);
+
+        if (application.jobUrl) {
+            const jobLink = document.createElement("a");
+            jobLink.href = application.jobUrl;
+            jobLink.textContent = "View Job";
+            jobLink.target = "_blank";
+            jobLink.rel = "noopener noreferrer";
+            applicationElement.append(jobLink);
+        }
+
+        if (application.notes) {
+            const applicationNotes = document.createElement("p");
+            applicationNotes.textContent = `Notes: ${application.notes}`;
+            applicationElement.append(applicationNotes);
+        }
 
         applicationsList.append(applicationElement); // add newest application to top of list/div
         
