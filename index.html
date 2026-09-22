@@ -19,10 +19,10 @@
         <form id ="application-form"> <!-- Content/fields for the form that will be filled out for each application -->
 
             <label for="company">Company</label> <!-- "label" = input description -->
-            <input type="text" id="company"> <!-- "input" creates a field for data entry  -->
+            <input type="text" id="company" required> <!-- "input" creates a field for data entry  -->
 
             <label for="position">Position</label>
-            <input type="text" id="position">
+            <input type="text" id="position" required>
 
             <label for="work-type">Work Type</label>
             <select id="work-type"> <!-- "select" = dropdown box -->
@@ -39,7 +39,6 @@
 
             <label for="status">Status</label>
             <select id="status">
-                <option value="interested">Interested</option>
                 <option value="applied">Applied</option>
                 <option value="interview">Interview</option>
                 <option value="offer">Offer</option>

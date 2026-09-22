@@ -22,44 +22,57 @@ const applications = savedApplications ? JSON.parse(savedApplications) : [];
 
 // renderApplicaiton displays applications from applications[]
 function renderApplications() {
+
     applicationsList.innerHTML = ""; // clear container before looping
 
-    // loop
+    // loop through applications array
     applications.forEach(function(application){
 
+        // Format dropdown values for display - uppercase first letters
         const formattedWorkType = application.workType.charAt(0).toUpperCase() + application.workType.slice(1);
         const formattedStatus = application.status.charAt(0).toUpperCase()+application.status.slice(1);
         
+        // Create main container for one application
         const applicationElement = document.createElement("div");// creates new div 
+        applicationElement.classList.add("application-card");
         
+        // Create and display company and position
         const applicationTitle = document.createElement("h3");
         applicationTitle.textContent = `${application.company} - ${application.position}`;
         applicationElement.append(applicationTitle);
 
+        // Create and display work type, location, pay, and status
         const applicationDetails = document.createElement("p");
         applicationDetails.textContent = `${formattedWorkType} | ${application.location} | ${application.pay} | ${formattedStatus}`;
         applicationElement.append(applicationDetails);
 
+        // Create and display application date
         const applicationDate = document.createElement("p");
         applicationDate.textContent = application.dateApplied;
         applicationElement.append(applicationDate);
 
+        // Only create a job post link if URL was provided
         if (application.jobUrl) {
-            const jobLink = document.createElement("a");
-            jobLink.href = application.jobUrl;
-            jobLink.textContent = "View Job";
-            jobLink.target = "_blank";
-            jobLink.rel = "noopener noreferrer";
+            const jobLink = document.createElement("a"); // Create clickable element
+            jobLink.href = application.jobUrl;          // Set link URL to job URL
+            jobLink.textContent = "View Job";           // Visible text for link
+            jobLink.target = "_blank";                  // Open link in new tab
+
+            jobLink.rel = "noopener noreferrer";        // Add extra security/privacy protection in new tab
+            // "noopener" = new tab can't control original tab
+            // "noreferrer" = new site cannot see original page URL as HTTP Referer
             applicationElement.append(jobLink);
         }
 
+        // Only display notes if "Notes" field was used
         if (application.notes) {
             const applicationNotes = document.createElement("p");
             applicationNotes.textContent = `Notes: ${application.notes}`;
             applicationElement.append(applicationNotes);
         }
 
-        applicationsList.append(applicationElement); // add newest application to top of list/div
+        // Add completed application card to the Applications section
+        applicationsList.append(applicationElement); 
         
     });
 }
