@@ -26,11 +26,26 @@ function renderApplications() {
 
     // loop
     applications.forEach(function(application){
-        
+
+        const formattedWorkType = application.workType.charAt(0).toUpperCase() + application.workType.slice(1);
+        const formattedStatus = application.status.charAt(0).toUpperCase()+application.status.slice(1);
+        console.log(formattedStatus);
         const applicationElement = document.createElement("div");// creates new div 
-        applicationElement.textContent = `${application.company} - ${application.position}`; // sets visible text for div
-        applicationsList.append(applicationElement); // add newest application to top of list
-        //console.log(application.company);
+        
+        const applicationTitle = document.createElement("h3");
+        applicationTitle.textContent = `${application.company} - ${application.position}`;
+        applicationElement.append(applicationTitle);
+
+        const applicationDetails = document.createElement("p");
+        applicationDetails.textContent = `${formattedWorkType} | ${application.location} | ${application.pay} | ${formattedStatus}`;
+        applicationElement.append(applicationDetails);
+
+        const applicationDate = document.createElement("p");
+        applicationDate.textContent = `${application.dateApplied}`;
+        applicationElement.append(applicationDate);
+
+        applicationsList.append(applicationElement); // add newest application to top of list/div
+        
     });
 }
 
