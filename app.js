@@ -1,5 +1,3 @@
-console.log("Starting my first JS app");
-// console.log() prints info to browser's dev console. helpful for testing/debugging
 
 const companyInput = document.getElementById("company"); // finds HTML element matching "company"
 const positionInput = document.getElementById("position");
@@ -36,6 +34,9 @@ function renderApplications() {
     });
 }
 
+renderApplications(); // Display saved applications upon loading page
+
+// EventListerner waits for a specific action ("submit" the form in this case)
 applicationForm.addEventListener("submit", function(event) {
     event.preventDefault(); // event=form submission, preventDefault() prevents page from refreshing 
 
@@ -58,17 +59,14 @@ applicationForm.addEventListener("submit", function(event) {
     
     localStorage.setItem("applications", JSON.stringify(applications)); // convert array to JSON text and save in localStorage
 
-    renderApplications(); // calling function
+    renderApplications(); // calling function to display saved applications
 
-    //console.log(applications);
+    applicationForm.reset(); // Reset all fields upon submitting 
 
-    
 
-    
-    
     
 }); 
-// EventListerner waits for a specific action ("submit" the form in this case)
+
 // and runs the code following function()
 
 
