@@ -22,3 +22,16 @@ button { /* targets buttons, in this case the Add Application button */
 label {
     font-weight: bold;
 } /* applies bold text to all <label> elements */
+
+/* Style each job application card */
+.application-card {
+    border: 1px solid; /* outline around each card */
+    padding: 12px;      /* space inside the card */
+    margin-bottom: 12px;    /* space between the cards */
+    border-radius: 8px;     /* rounded corners */
+}
+
+/* Control the container holding all application cards */
+#applications-list {
+    max-width: 500px;   /* Keeps application list width same as the form */
+}
