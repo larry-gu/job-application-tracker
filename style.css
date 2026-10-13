@@ -35,3 +35,9 @@ label {
 #applications-list {
     max-width: 500px;   /* Keeps application list width same as the form */
 }
+
+/* Keep the Delete button on its own line*/
+.delete-button {
+    display: block;
+    margin-top: 16px;
+}
