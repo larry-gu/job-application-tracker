@@ -26,7 +26,7 @@ function renderApplications() {
     applicationsList.innerHTML = ""; // clear container before looping
 
     // loop through applications array
-    applications.forEach(function(application){
+    applications.forEach(function(application, index){
 
         // Format dropdown values for display - uppercase first letters
         const formattedWorkType = application.workType.charAt(0).toUpperCase() + application.workType.slice(1);
@@ -71,8 +71,30 @@ function renderApplications() {
             applicationElement.append(applicationNotes);
         }
 
+        // Button to delete application
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.classList.add("delete-button");
+        applicationElement.append(deleteButton);
+
+    
+        // Click listener for Delete button to remove application using index
+        deleteButton.addEventListener("click", function(){
+            // "confirm" = browser dialog box
+            const confirmed = confirm("Delete application?");
+
+            // If confirmed for deletion, delete application
+            if (confirmed){
+                applications.splice(index, 1); // start at "index" and remove 1 item
+                localStorage.setItem("applications", JSON.stringify(applications)); // saves new aray
+                renderApplications();     
+            }
+        })
+
+
         // Add completed application card to the Applications section
         applicationsList.append(applicationElement); 
+        
         
     });
 }
