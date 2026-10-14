@@ -60,6 +60,21 @@
             <button type="button" id="cancel-edit-button" hidden>Cancel Edit</button> <!-- clickable button that does not submit form and is only visible while editing-->
         </form>
 
+        <!--Search box used to filter applications by company or position-->
+        <label for="search">Search Applications</label>
+        <input type="text" id="search" placeholder="Search by company or position">
+
+        <!-- Status filter to filter applications by status-->
+         <label for="status-filter">Filter by Status</label>
+         <select id="status-filter">
+            <option value="">All Statuses</option>
+            <option value="applied">Applied</option>
+            <option value="interview">Interview</option>
+            <option value="offer">Offer</option>
+            <option value="rejected">Rejected</option>
+            <option value="withdrawn">Withdrawn</option>
+         </select>
+
         <h2>Applications</h2> <!-- heading for section where saved applications are viewed-->
 
         <div id="applications-list"></div> 

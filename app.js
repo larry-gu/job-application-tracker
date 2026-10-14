@@ -12,6 +12,8 @@ const applicationForm = document.getElementById("application-form");
 const applicationsList = document.getElementById("applications-list");
 const submitButton = document.getElementById("submit-button");
 const cancelEditButton = document.getElementById("cancel-edit-button");
+const searchInput = document.getElementById("search");
+const statusFilter = document.getElementById("status-filter");
 
 // Retrieve previous saved applications from localSorage
 // getItem() will return null if nothing is saved
@@ -29,8 +31,36 @@ function renderApplications() {
 
     applicationsList.innerHTML = ""; // clear container before looping
 
+    // Convert search test to lowercase
+    const searchTerm = searchInput.value.toLowerCase();
+
+    // Set selectedStatus to statusFilter value
+    const selectedStatus = statusFilter.value;
+
+    // Show only applications whose company/position matches search
+    const filteredApplications = applications.filter(function(application) { // "filter" = new array containing relevant iterms
+       
+        // Check whether company or position contains search text
+        const matchesSearch = 
+            application.company.toLowerCase().includes(searchTerm) ||
+            application.position.toLowerCase().includes(searchTerm);
+
+        // Match all statuses if "All statuses" is selected,
+        // else require application's status to match selected status
+        const matchesStatus = 
+            selectedStatus === "" ||
+            application.status === selectedStatus;
+        
+        // Only keep applications that match both search and status filters.
+        return matchesSearch && matchesStatus;
+    
+    });
+
     // loop through applications array
-    applications.forEach(function(application, index){
+    filteredApplications.forEach(function(application, index){
+
+        // Find current application's position in original array
+        const originalIndex = applications.indexOf(application);
 
         // Format dropdown values for display - uppercase first letters
         const formattedWorkType = application.workType.charAt(0).toUpperCase() + application.workType.slice(1);
@@ -85,7 +115,7 @@ function renderApplications() {
         editButton.addEventListener("click", function() {
 
             // Index to track application being edited
-            editingIndex = index;
+            editingIndex = originalIndex;
 
             // Show the "cancel edit" button while editing
             cancelEditButton.hidden = false;
@@ -127,12 +157,13 @@ function renderApplications() {
 
             // If confirmed for deletion, delete application
             if (confirmed){
-                applications.splice(index, 1); // start at "index" and remove 1 item
+                applications.splice(originalIndex, 1); // start at "index" and remove 1 item
                 localStorage.setItem("applications", JSON.stringify(applications)); // saves new aray
                 renderApplications();     
             }
         })
 
+        
 
         // Add completed application card to the Applications section
         applicationsList.append(applicationElement); 
@@ -140,6 +171,17 @@ function renderApplications() {
         
     });
 }
+
+// Event listener for Search
+searchInput.addEventListener("input", function(){
+    renderApplications();
+})
+
+// Event listener for Status Filter
+statusFilter.addEventListener("change", function(){
+    renderApplications();
+})
+
 
 renderApplications(); // Display saved applications upon loading page
 
