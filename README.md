@@ -2,6 +2,10 @@
 
 A browser-based application for tracking job applications, including company, position, work type, status, application date, job URL, and notes.
 
+## Live Demo
+
+[View the live application](https://larry-gu.github.io/job-application-tracker/)
+
 ## Features
 
 - Add new job applications
