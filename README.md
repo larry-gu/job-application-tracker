@@ -6,6 +6,10 @@ A browser-based application for tracking job applications, including company, po
 
 [View the live application](https://larry-gu.github.io/job-application-tracker/)
 
+## Screenshot
+
+![Job Application Tracker screenshot](assets/App%20screenshot.png)
+
 ## Features
 
 - Add new job applications
