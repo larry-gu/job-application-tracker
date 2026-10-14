@@ -92,6 +92,9 @@ function renderApplications() {
             jobLink.textContent = "View Job";           // Visible text for link
             jobLink.target = "_blank";                  // Open link in new tab
 
+            // Add class 
+            jobLink.classList.add("job-link");
+
             jobLink.rel = "noopener noreferrer";        // Add extra security/privacy protection in new tab
             // "noopener" = new tab can't control original tab
             // "noreferrer" = new site cannot see original page URL as HTTP Referer
