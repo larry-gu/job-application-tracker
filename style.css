@@ -1,5 +1,6 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f6f8;  /* Contrast behind main app container */
 } /* applies styles 
     (in this case font, Arial if available, 
     otherwise another sans-serif) to the body element */
@@ -8,15 +9,15 @@ form {
     display: flex; /*flexible layout container */
     flex-direction: column; /*stacks items vertically */
     gap: 10px; /* adds 10 pixels of space between each item */
-    max-width: 500px; /* prevents wide stretching*/
 } /* form is CSS selector and targets <form> in html file*/
 
 input, /* targets all <input> fields */
 select, /* targets all dropdown menus */
-textarea, /*targets textarea fields*/
-button { /* targets buttons, in this case the Add Application button */
-    padding: 8px;
-    font-size: 16px;
+textarea { /*targets textarea fields*/
+    width: 100%;                /* Make fields fill avalable form width */
+    box-sizing: border-box;     /* Keep padding and borders inside the 100% width */
+    border: 1px solid #ccc;   /* Add light border arond each field */
+    border-radius: 6px;         /* Slightly round field corners */  
 } /* commas between each elements means that padding and font-size is applied to all*/
 
 label {
@@ -33,11 +34,81 @@ label {
 
 /* Control the container holding all application cards */
 #applications-list {
-    max-width: 500px;   /* Keeps application list width same as the form */
+    width: 100%;   /* Keeps application list width same as the form */
 }
 
 /* Keep the Delete button on its own line*/
 .delete-button {
-    display: block;
-    margin-top: 16px;
+    background-color: #dc2626; /* Red = destructive */
+    color:white;
+    border: none;
+}
+
+
+
+/* Controls width and position of application*/
+.app-container {
+    max-width: 700px;   /* Prevents app from becoming too wide on large screens */
+    margin: 0 auto;     /* Keeps top/bottom margin at 0 and centers left/right automaticallly */
+    padding: 24px;      /* Adds space between container edges and content */
+    background-color: white;    /* Gives application its own surface */
+    border-radius: 12px;    /* Rounds corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adds subtle shadow around container */
+}
+
+/* Submit button styling */
+#submit-button {
+    margin-top: 8px;     /* Add space above the button */
+    margin-bottom: 8px;
+    border: none;        /* Remove default button border */
+    border-radius: 6px;  /* Round corners */
+    background-color: #2563eb; /* Blue background */
+    color: white;      /* Makes the button text white */
+    font-weight: bold;   /* Makes the button label stand out */
+
+}
+
+/* Add space around search and filter controls */
+#search {
+    margin-bottom: 12px;
+}
+
+#status-filter {
+    margin-bottom: 20px; 
+}
+
+/* Edit and Delete buttons */
+.edit-button,
+.delete-button {
+    padding: 8px 12px;      /* Add space inside each button */
+    border-radius: 6px;     /* Round corners */
+    border: 1px solid #ccc; /* Add light border */
+    font-weight: bold; 
+    margin-left: 8px;     
+}
+
+/* View Job button styling*/
+.job-link {
+    display: inline-block;      /* Keep link on same row with padding */
+    padding: 8px 12px;          /* Space inside link */
+    border: 1px solid #ccc;   /* Give button-like border */
+    border-radius: 6px;         /* Round corners */
+    text-decoration: none;      /* Remove link underline */
+}
+
+/* Give clickable items visual feedback when mouse cursor hovers over them */
+#submit-button:hover,
+.delete-button:hover{
+    opacity: 0.85;
+}
+
+.edit-button:hover,
+.job-link:hover {
+    background-color:  #e5e7eb;
+}
+
+/* Smooth visual feedback */
+button,
+.job-link {
+    transition: 0.2s;
 }

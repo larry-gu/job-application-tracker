@@ -10,35 +10,68 @@
     </head>
 
     <body> <!-- Contains all visible content -->
-        <h1>Job Application Tracker</h1> <!-- Main heading -->
 
-        <p>Track my job applications</p> <!-- Paragraph -->
+        <!-- Main container for application-->
+        <main class="app-container">
 
-        <h2>Add Application</h2> <!-- Second level heading for sections -->
+            <h1>Job Application Tracker</h1> <!-- Main heading -->
 
-        <form id ="application-form"> <!-- Content/fields for the form that will be filled out for each application -->
+            <p>Track my job applications</p> <!-- Paragraph -->
 
-            <label for="company">Company</label> <!-- "label" = input description -->
-            <input type="text" id="company" required> <!-- "input" creates a field for data entry  -->
+            <h2>Add Application</h2> <!-- Second level heading for sections -->
 
-            <label for="position">Position</label>
-            <input type="text" id="position" required>
+            <form id ="application-form"> <!-- Content/fields for the form that will be filled out for each application -->
 
-            <label for="work-type">Work Type</label>
-            <select id="work-type"> <!-- "select" = dropdown box -->
-                <option value="remote">Remote</option> <!-- "option" = a choice for dropdown -->
-                <option value="hybrid">Hybrid</option>
-                <option value="onsite">On-site</option>
-            </select>
+                <label for="company">Company</label> <!-- "label" = input description -->
+                <input type="text" id="company" required> <!-- "input" creates a field for data entry  -->
 
-            <label for="location">Location</label>
-            <input type="text" id="location">
+                <label for="position">Position</label>
+                <input type="text" id="position" required>
 
-            <label for="pay">Pay</label>
-            <input type="text" id="pay">
+                <label for="work-type">Work Type</label>
+                <select id="work-type"> <!-- "select" = dropdown box -->
+                    <option value="remote">Remote</option> <!-- "option" = a choice for dropdown -->
+                    <option value="hybrid">Hybrid</option>
+                    <option value="onsite">On-site</option>
+                </select>
 
-            <label for="status">Status</label>
-            <select id="status">
+                <label for="location">Location</label>
+                <input type="text" id="location">
+
+                <label for="pay">Pay</label>
+                <input type="text" id="pay">
+
+                <label for="status">Status</label>
+                <select id="status">
+                    <option value="applied">Applied</option>
+                    <option value="interview">Interview</option>
+                    <option value="offer">Offer</option>
+                    <option value="rejected">Rejected</option>
+                    <option value="withdrawn">Withdrawn</option>
+                </select>
+
+                <label for="date-applied">Date Applied</label>
+                <input type="date" id="date-applied"> <!-- " input type of date allows for built-in date picker box"-->
+
+                <label for="job-url">Job Posting URL</label>
+                <input type="url" id="job-url"> <!-- url input type is used for URLs-->
+
+                <label for="notes">Notes</label>
+                <textarea id="notes"></textarea> <!-- textarea provides larger text box for multiple lines -->
+                
+                <button type="submit" id="submit-button">Add Application</button> <!-- creates a clickable button-->
+
+                <button type="button" id="cancel-edit-button" hidden>Cancel Edit</button> <!-- clickable button that does not submit form and is only visible while editing-->
+            </form>
+
+            <!--Search box used to filter applications by company or position-->
+            <label for="search">Search Applications</label>
+            <input type="text" id="search" placeholder="Search by company or position">
+
+            <!-- Status filter to filter applications by status-->
+            <label for="status-filter">Filter by Status</label>
+            <select id="status-filter">
+                <option value="">All Statuses</option>
                 <option value="applied">Applied</option>
                 <option value="interview">Interview</option>
                 <option value="offer">Offer</option>
@@ -46,46 +79,20 @@
                 <option value="withdrawn">Withdrawn</option>
             </select>
 
-            <label for="date-applied">Date Applied</label>
-            <input type="date" id="date-applied"> <!-- " input type of date allows for built-in date picker box"-->
+            <h2>Applications</h2> <!-- heading for section where saved applications are viewed-->
 
-            <label for="job-url">Job Posting URL</label>
-            <input type="url" id="job-url"> <!-- url input type is used for URLs-->
-
-            <label for="notes">Notes</label>
-            <textarea id="notes"></textarea> <!-- textarea provides larger text box for multiple lines -->
-            
-            <button type="submit" id="submit-button">Add Application</button> <!-- creates a clickable button-->
-
-            <button type="button" id="cancel-edit-button" hidden>Cancel Edit</button> <!-- clickable button that does not submit form and is only visible while editing-->
-        </form>
-
-        <!--Search box used to filter applications by company or position-->
-        <label for="search">Search Applications</label>
-        <input type="text" id="search" placeholder="Search by company or position">
-
-        <!-- Status filter to filter applications by status-->
-         <label for="status-filter">Filter by Status</label>
-         <select id="status-filter">
-            <option value="">All Statuses</option>
-            <option value="applied">Applied</option>
-            <option value="interview">Interview</option>
-            <option value="offer">Offer</option>
-            <option value="rejected">Rejected</option>
-            <option value="withdrawn">Withdrawn</option>
-         </select>
-
-        <h2>Applications</h2> <!-- heading for section where saved applications are viewed-->
-
-        <div id="applications-list"></div> 
-        <!-- "div" is a general purpose container
-              In this case, this one is empty. We will use
-              JavaScript to find the "applications-list" to
-              insert saved jobs in it-->
-
-        <script src="app.js"></script>
-            <!--<script> tells browser to run JS.
-                src shows what JS file to use.-->
+            <div id="applications-list"></div> 
+            <!-- "div" is a general purpose container
+                In this case, this one is empty. We will use
+                JavaScript to find the "applications-list" to
+                insert saved jobs in it-->
+         </main>
+         
+         <script src="app.js"></script>
+         <!--<script> tells browser to run JS.
+         src shows what JS file to use.-->
 
     </body>
+
+    
 </html>
