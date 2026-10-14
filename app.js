@@ -10,6 +10,8 @@ const jobUrlInput = document.getElementById("job-url");
 const notesTextArea = document.getElementById("notes");
 const applicationForm = document.getElementById("application-form");
 const applicationsList = document.getElementById("applications-list");
+const submitButton = document.getElementById("submit-button");
+const cancelEditButton = document.getElementById("cancel-edit-button");
 
 // Retrieve previous saved applications from localSorage
 // getItem() will return null if nothing is saved
@@ -18,6 +20,8 @@ const savedApplications = localStorage.getItem("applications");
 // If saved data exists, convert JSON text back into JavaScript array
 // else start with empty array
 const applications = savedApplications ? JSON.parse(savedApplications) : [];
+
+let editingIndex = null;
 
 
 // renderApplicaiton displays applications from applications[]
@@ -71,6 +75,44 @@ function renderApplications() {
             applicationElement.append(applicationNotes);
         }
 
+        // Button to edit applcation
+        const editButton = document.createElement("button");
+        editButton.textContent = "Edit";
+        editButton.classList.add("edit-button");
+        applicationElement.append(editButton);
+
+        // Edit button listener
+        editButton.addEventListener("click", function() {
+
+            // Index to track application being edited
+            editingIndex = index;
+
+            // Show the "cancel edit" button while editing
+            cancelEditButton.hidden = false;
+
+            // Update submit button to show "Update Application"
+            submitButton.textContent = "Update Application";
+
+            // Load selected applcation's information into the form
+            companyInput.value = application.company;
+            positionInput.value = application.position;
+            workTypeSelect.value = application.workType;
+            locationInput.value = application.location;
+            payInput.value = application.pay;
+            statusSelect.value = application.status;
+            dateAppliedInput.value = application.dateApplied;
+            jobUrlInput.value = application.jobUrl;
+            notesTextArea.value = application.notes;
+        })
+
+        // Cancel Edit button listener
+        cancelEditButton.addEventListener("click", function(){
+            editingIndex = null;
+            applicationForm.reset();
+            submitButton.textContent = "Add Application";
+            cancelEditButton.hidden = true;
+        });
+
         // Button to delete application
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
@@ -120,8 +162,19 @@ applicationForm.addEventListener("submit", function(event) {
 
     }; // Object that represents a single job application
 
-    applications.unshift(application); // adds newest application to the start of array
-    
+    // if we are editing, replace existing application. else, add new application
+    if (editingIndex !== null) {
+        applications[editingIndex] = application;
+        editingIndex = null;
+        // Reset form to "Add" mode after updating existing form
+        submitButton.textContent = "Add Application";
+        
+        // Hide Cancel Edit button
+        cancelEditButton.hidden = true;
+    } else {
+        applications.unshift(application); // adds newest application to the start of array
+    }
+
     localStorage.setItem("applications", JSON.stringify(applications)); // convert array to JSON text and save in localStorage
 
     renderApplications(); // calling function to display saved applications
